@@ -1,6 +1,7 @@
-Application
-# Product-ms
-
+# Application
+Essa aplicação tem como objetivo a criação de um microserviço de produtos.
+## Product-ms
+Será um microserviço responsável por gerenciar os produtos da aplicação. Que se comunicará com o microserviço de estoque(warehouse-ms) para verificar a disponibilidade do produto.
 ## Endpoint
 - BaseUrl: /products
 - POST: create()
