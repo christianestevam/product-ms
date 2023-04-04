@@ -1,6 +1,7 @@
 package com.gump.productms.service;
 
 import com.gump.productms.dto.ProductDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,19 +17,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Optional<ProductDTO> create(ProductDTO request){
-        Product product = new Product();
-        product.setName(request.getName());
-        product.setDescription(request.getDescription());
-        product.setPrice(request.getPrice());
-        product.setAvailable(request.isAvailable());
-
+        ModelMapper mapper = new ModelMapper();
+        Product product = mapper.map(request, Product.class);
         repository.saveAndFlush(product);
 
-        ProductDTO response = new ProductDTO();
-        response.setName(product.getName());
-        response.setDescription(product.getDescription());
-        response.setPrice(product.getPrice());
-        response.setAvailable(product.isAvailable());
+        ProductDTO response = mapper.map(product, ProductDTO.class);
         return Optional.of(request);
     }
 }
