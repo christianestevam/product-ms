@@ -16,7 +16,19 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Optional<ProductDTO> create(ProductDTO request){
+        Product product = new Product();
+        product.setName(request.getName());
+        product.setDescription(request.getDescription());
+        product.setPrice(request.getPrice());
+        product.setAvailable(request.isAvailable());
 
-        //  Request -> Model/Entity -> Response
+        repository.saveAndFlush(product);
+
+        ProductDTO response = new ProductDTO();
+        response.setName(product.getName());
+        response.setDescription(product.getDescription());
+        response.setPrice(product.getPrice());
+        response.setAvailable(product.isAvailable());
+        return Optional.of(request);
     }
 }
