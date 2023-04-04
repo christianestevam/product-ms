@@ -1,4 +1,9 @@
 package com.gump.productms.service;
 
-public class ProductService {
+import com.gump.productms.dto.ProductDTO;
+
+import java.util.Optional;
+
+public interface ProductService {
+    Optional<ProductDTO> create(ProductDTO request);
 }
