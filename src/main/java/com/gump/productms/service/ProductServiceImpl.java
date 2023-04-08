@@ -36,10 +36,10 @@ public class ProductServiceImpl implements ProductService {
         List<Product> products = repository.findAll();
         List<ProductDTO> responses = new ArrayList<>();
 
-        for (Product product : products) {
-            ProductDTO response = mapper.map(product, ProductDTO.class);
-            response.add(response);
-        }
+        products.forEach(product -> {
+            ProductDTO response = mapper.map(product, ProductDTO.class)
+            responses.add(response);
+        });
 
         return responses;
     }
